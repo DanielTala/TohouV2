@@ -10,6 +10,7 @@ public class Player
 
     private float timer = 0;
     public int HP;
+    public int BulletLevel;
 
     public void Initialize()
     {
@@ -40,10 +41,10 @@ public class Player
         
         timer += deltaTime;
 
-        if (timer >= .25f)
+        if (timer >= .05f)
         {
             timer = 0;
-            Game.SpawnBullet(new Bullet(Position, false));
+            Game.SpawnBullet(new Bullet(Position, false, BulletLevel));
         }
 
         foreach (var i in Game.bullets)

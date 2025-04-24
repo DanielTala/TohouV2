@@ -6,7 +6,9 @@ public class Game
     public static Player player;
     public static List<Bullet> bullets = new List<Bullet>();
     private static List<Bullet> toRemove = new();
+    
     public static GameStates CurrentState = GameStates.Menu;
+    private EnemySpawner enemySpawner;
     public enum GameStates
     {
         Menu,
@@ -38,6 +40,11 @@ public class Game
         CurrentState = newState;
 
         player = null;
+        if(enemySpawner != null)
+        {
+            enemySpawner.DespawnAllEnemy();
+            enemySpawner = null;
+        }
         bullets.Clear();
         toRemove.Clear();
 
@@ -45,6 +52,8 @@ public class Game
         {
             player = new Player();
             player.Initialize();
+            enemySpawner = new EnemySpawner();
+            enemySpawner.Initialize();
         }
     }
 
@@ -67,13 +76,7 @@ public class Game
                 }
 
                 player.Update(deltaTime);
-
-                timer += deltaTime;
-                if (timer >= 0.5f)
-                {
-                    timer = 0;
-                    SpawnBullet(new Bullet(new Vector2(Raylib.GetScreenWidth() / 2, 4), true));
-                }
+                enemySpawner.Update(deltaTime);
 
                 foreach (var i in bullets)
                 {
@@ -85,7 +88,7 @@ public class Game
                     bullets.Remove(i);
                 }
 
-                toRemove.Clear();
+                //toRemove.Clear();
 
                 if (player.HP <= 0)
                     SetState(GameStates.Lose);
@@ -117,7 +120,7 @@ public class Game
 
             case GameStates.Ingame:
                 player.Draw();
-
+                enemySpawner.Draw();
                 foreach (var i in bullets)
                 {
                     i.Draw();

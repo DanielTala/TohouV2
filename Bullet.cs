@@ -6,21 +6,24 @@ public class Bullet
     public float Size = 16;
     public Vector2 position;
     public float Speed = 1000;
-
-
     public bool IsEnemy;
-
     public bool IsDead;
-    public Bullet(Vector2 pos, bool isEnemy)
+    public int Level;
+    public Bullet(Vector2 pos, bool isEnemy, int level)
     {
         position = pos;
         IsEnemy = isEnemy;
+        Level = level;
+
+        if(!Program.BulletTextures.ContainsKey(Level))
+            Level = 0;
     }
 
     public void Initialize()
     {
 
     }
+
     public void Update(float deltaTime)
     {
         if (IsEnemy)
@@ -41,7 +44,7 @@ public class Bullet
     {            
         Raylib.DrawCircleLinesV(position, Size, IsEnemy? Color.Magenta : Color.Yellow);
 
-        var textureSize = new Vector2(Program.BulletTexture.Width, Program.BulletTexture.Height);
-        Raylib.DrawTextureV(Program.BulletTexture, position - (textureSize /2), IsEnemy? Color.Magenta : Color.Yellow);
+        var textureSize = new Vector2(Program.BulletTextures[Level].Width, Program.BulletTextures[Level].Height);
+        Raylib.DrawTextureV(Program.BulletTextures[Level], position - (textureSize /2), IsEnemy? Color.White : Color.Yellow);
     }
 }
