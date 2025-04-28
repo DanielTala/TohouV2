@@ -8,7 +8,8 @@ public class Game
     private static List<Bullet> toRemove = new();
     
     public static GameStates CurrentState = GameStates.Menu;
-    private EnemySpawner enemySpawner;
+    private static EnemySpawner enemySpawner;
+    private static LevelManager levelManager;
     public enum GameStates
     {
         Menu,
@@ -28,11 +29,32 @@ public class Game
         toRemove.Add(b);
     }
 
+    public static void LoadLevel(int level)
+    {
+        player = null;
+        if(enemySpawner != null)
+        {
+            enemySpawner.DespawnAllEnemy();
+        }
+        bullets.Clear();
+        toRemove.Clear();
+
+        if (CurrentState == GameStates.Ingame) 
+        {
+            player = new Player();
+            player.Initialize();
+            levelManager.Initialize(level);
+        }
+    }
+
     public void Initialize()
     {
         player = new Player();
         player.Initialize();
+        enemySpawner = new EnemySpawner();
+        enemySpawner.Initialize();
         SetState(GameStates.Menu);
+        levelManager = new LevelManager();
     }
 
     public void SetState(GameStates newState)
@@ -52,6 +74,7 @@ public class Game
         {
             player = new Player();
             player.Initialize();
+            levelManager.Initialize(0);
             enemySpawner = new EnemySpawner();
             enemySpawner.Initialize();
         }
@@ -77,6 +100,7 @@ public class Game
 
                 player.Update(deltaTime);
                 enemySpawner.Update(deltaTime);
+                levelManager.Update(deltaTime);
 
                 foreach (var i in bullets)
                 {
@@ -121,6 +145,7 @@ public class Game
             case GameStates.Ingame:
                 player.Draw();
                 enemySpawner.Draw();
+                levelManager.Draw();
                 foreach (var i in bullets)
                 {
                     i.Draw();
@@ -128,6 +153,7 @@ public class Game
 
                 Raylib.DrawText($"Bullets: {bullets.Count}", 4, 30, 20, Color.Green);
                 Raylib.DrawText($"HP: {player.HP}", Raylib.GetScreenWidth() / 2, 30, 20, Color.Red);
+                Raylib.DrawText($"Current Level: {levelManager.currentLevelIndex + 1}", Raylib.GetScreenWidth() / 2, 50, 20, Color.Yellow);
                 break;
             
             case GameStates.Lose:

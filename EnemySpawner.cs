@@ -29,25 +29,25 @@ public class EnemySpawner
 
     public void Update(float deltaTime)
     {
-        if (Enemies.Count < enemyCount)
-        {
-            enemySpawnTimer += deltaTime;
+        // if (Enemies.Count < enemyCount)
+        // {
+        //     enemySpawnTimer += deltaTime;
 
-            if (enemySpawnTimer > enemySpawnDelay)
-            {
-                enemySpawnTimer = 0;
+        //     if (enemySpawnTimer > enemySpawnDelay)
+        //     {
+        //         enemySpawnTimer = 0;
 
-                var screenWidth = Raylib.GetScreenWidth();
-                var screenHeight = Raylib.GetScreenHeight();
-                var initialPos = new Vector2(screenWidth + Raylib.GetRandomValue(5, 20), (screenHeight / 2) - Raylib.GetRandomValue(5, 20));
-                var randomHeight = Raymath.Clamp(screenHeight/2 - Raylib.GetRandomValue(0, screenHeight/2), 10, screenHeight/2);
-                var finalPos = new Vector2(Raylib.GetRandomValue(5, screenWidth - 5), randomHeight);
-                BaseEnemy enemy = new BaseEnemy(initialPos, finalPos, 0, new Vector2(Program.EnemyTexture.Width, Program.EnemyTexture.Height));
-                enemy.Initialize();
-                Enemies.Add(enemy);
-            }
-        }
-
+        //         var screenWidth = Raylib.GetScreenWidth();
+        //         var screenHeight = Raylib.GetScreenHeight();
+        //         var initialPos = new Vector2(screenWidth + Raylib.GetRandomValue(5, 20), (screenHeight / 2) - Raylib.GetRandomValue(5, 20));
+        //         var randomHeight = Raymath.Clamp(screenHeight/2 - Raylib.GetRandomValue(0, screenHeight/2), 10, screenHeight/2);
+        //         var finalPos = new Vector2(Raylib.GetRandomValue(5, screenWidth - 5), randomHeight);
+        //         BaseEnemy enemy = new BaseEnemy(initialPos, finalPos, 0, new Vector2(Program.EnemyTexture.Width, Program.EnemyTexture.Height));
+        //         enemy.Initialize();
+        //         Enemies.Add(enemy);
+        //     }
+        // }
+        
         foreach(BaseEnemy enemy in Enemies)
         {
             enemy.Update(deltaTime);
