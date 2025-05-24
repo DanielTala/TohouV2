@@ -73,9 +73,19 @@ public class Player
     }
 
     public void Draw()
-    {            
+    {
         var textureSize = new Vector2(Program.PlayerTexture.Width, Program.PlayerTexture.Height);
         Raylib.DrawTextureV(Program.PlayerTexture, Position - (textureSize / 2), Color.White);
         Raylib.DrawCircleLinesV(Position, Size, Color.Red);
+    }
+
+    public void AddHP(int value)
+    {
+        HP += value;
+    }
+
+    public void AddSpeed(float value)
+    {
+        Speed += value;
     }
 }

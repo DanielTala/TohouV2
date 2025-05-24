@@ -27,7 +27,7 @@ public class ItemSpawner
     {
         if (Raylib.IsKeyReleased(KeyboardKey.U))
         {
-            var item = new HPItem(150, new Vector2(100, 100));
+            var item = new SpeedItem(150, new Vector2(100, 100));
             item.Initialize();
             ItemList.Add(item);
         }

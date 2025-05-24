@@ -80,7 +80,7 @@ public class Game
         CurrentState = newState;
 
         player = null;
-        if(enemySpawner != null)
+        if (enemySpawner != null)
         {
             enemySpawner.DespawnAllEnemy();
             enemySpawner = null;
@@ -182,7 +182,7 @@ public class Game
                 Raylib.DrawText($"HP: {player.HP}", Raylib.GetScreenWidth() / 2, 30, 20, Color.Red);
                 Raylib.DrawText($"Current Level: {levelManager.currentLevelIndex + 1}", Raylib.GetScreenWidth() / 2, 50, 20, Color.Yellow);
                 break;
-            
+
             case GameStates.Lose:
                 Raylib.DrawText("You Lose \n Press Enter to Retry \n Press Esc to Menu", Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2, 20, Color.Black);
                 break;
