@@ -6,11 +6,11 @@ public class Game
     public static Player player;
     public static List<Bullet> bullets = new List<Bullet>();
     private static List<Bullet> toRemove = new();
-    
+
     public static GameStates CurrentState = GameStates.Menu;
     private static EnemySpawner enemySpawner;
     private static LevelManager levelManager;
-    private static ItemSpawner itemSpawner;
+    public static ItemSpawner itemSpawner;
     public enum GameStates
     {
         Menu,
@@ -30,10 +30,20 @@ public class Game
         toRemove.Add(b);
     }
 
+    public static void DespawnItem(BaseItem b)
+    {
+        itemSpawner.DespawnItem(b);
+    }
+
+    public static List<BaseItem> ReturnItemList()
+    {
+        return itemSpawner.ReturnItemList();
+    }
+
     public static void LoadLevel(int level)
     {
         player = null;
-        if(enemySpawner != null)
+        if (enemySpawner != null)
         {
             enemySpawner.DespawnAllEnemy();
         }
@@ -45,7 +55,7 @@ public class Game
         bullets.Clear();
         toRemove.Clear();
 
-        if (CurrentState == GameStates.Ingame) 
+        if (CurrentState == GameStates.Ingame)
         {
             player = new Player();
             player.Initialize();
@@ -96,7 +106,6 @@ public class Game
         }
     }
 
-    float timer = 0;
     public void Update(float deltaTime)
     {
 

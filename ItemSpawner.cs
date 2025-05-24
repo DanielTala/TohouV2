@@ -9,22 +9,36 @@ public class ItemSpawner
     {
 
     }
+    public List<BaseItem> ReturnItemList()
+    {
+        return ItemList;
+    }
 
     public void DespawnAllItems()
     {
 
     }
+
+    public void DespawnItem(BaseItem b)
+    {
+        ToRemove.Add(b);
+    }
     public void Update(float deltaTime)
     {
         if (Raylib.IsKeyReleased(KeyboardKey.U))
         {
-            var item = new BaseItem(500, new Vector2(100, 100));
+            var item = new HPItem(150, new Vector2(100, 100));
             item.Initialize();
             ItemList.Add(item);
         }
         foreach (var item in ItemList)
         {
             item.Update(deltaTime);
+        }
+
+        foreach (var item in ToRemove)
+        {
+            ItemList.Remove(item);
         }
     }
     public void Draw()

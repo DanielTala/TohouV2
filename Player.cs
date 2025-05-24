@@ -36,9 +36,9 @@ public class Player
             Position.X += Speed * deltaTime;
         }
 
-        Position.X = Raymath.Clamp(Position.X, Size/2, Raylib.GetScreenWidth() - Size/2);
-        Position.Y = Raymath.Clamp(Position.Y, Size/2, Raylib.GetScreenHeight() - Size/2);
-        
+        Position.X = Raymath.Clamp(Position.X, Size / 2, Raylib.GetScreenWidth() - Size / 2);
+        Position.Y = Raymath.Clamp(Position.Y, Size / 2, Raylib.GetScreenHeight() - Size / 2);
+
         timer += deltaTime;
 
         if (timer >= .05f)
@@ -51,13 +51,23 @@ public class Player
         {
             if (i.IsDead || !i.IsEnemy)
                 continue;
-            
+
             var colliding = Raylib.CheckCollisionCircles(Position, Size, i.position, i.Size);
 
             if (colliding)
             {
                 HP--;
                 Game.DespawnBullet(i);
+            }
+        }
+
+        foreach (var i in Game.ReturnItemList())
+        {
+            var colliding = Raylib.CheckCollisionCircles(Position, Size, i.position, i.size);
+
+            if (colliding)
+            {
+                i.ItemCollided();
             }
         }
     }

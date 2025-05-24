@@ -14,7 +14,7 @@ public class BaseItem
         this.initialPosition = initialPosition;
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         var xDirection = Raylib.GetRandomValue(1, 100);
         var yDirection = Raylib.GetRandomValue(1, 100);
@@ -22,11 +22,11 @@ public class BaseItem
         position = initialPosition;
     }
 
-    public void Update(float deltaTime)
+    public virtual void Update(float deltaTime)
     {
         position += direction * speed * deltaTime;
 
-        if(position.X > Raylib.GetScreenWidth() - size/2) // reflect to left
+        if (position.X > Raylib.GetScreenWidth() - size / 2) // reflect to left
         {
             direction = Vector2.Reflect(direction, new Vector2(1, 0));
         }
@@ -34,7 +34,7 @@ public class BaseItem
         {
             direction = Vector2.Reflect(direction, new Vector2(-1, 0));
         }
-        else if (position.Y > Raylib.GetScreenHeight() - size/2) // reflect up
+        else if (position.Y > Raylib.GetScreenHeight() - size / 2) // reflect up
         {
             direction = Vector2.Reflect(direction, new Vector2(0, 1));
         }
@@ -44,8 +44,14 @@ public class BaseItem
         }
     }
 
-    public void Draw()
+    public virtual void Draw()
     {
         Raylib.DrawCircleLinesV(position, size, Color.Pink);
     }
+
+    public virtual void ItemCollided()
+    {
+        
+    }
+
 }
