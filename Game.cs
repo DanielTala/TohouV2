@@ -10,6 +10,7 @@ public class Game
     public static GameStates CurrentState = GameStates.Menu;
     private static EnemySpawner enemySpawner;
     private static LevelManager levelManager;
+    private static ItemSpawner itemSpawner;
     public enum GameStates
     {
         Menu,

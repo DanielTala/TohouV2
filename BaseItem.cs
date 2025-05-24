@@ -19,6 +19,7 @@ public class BaseItem
         var xDirection = Raylib.GetRandomValue(1, 100);
         var yDirection = Raylib.GetRandomValue(1, 100);
         direction = Raymath.Vector2Normalize(new Vector2(xDirection, yDirection));
+        position = initialPosition;
     }
 
     public void Update(float deltaTime)
@@ -45,6 +46,6 @@ public class BaseItem
 
     public void Draw()
     {
-        Raylib.DrawCircleV(initialPosition, size, Color.Pink);
+        Raylib.DrawCircleV(position, size, Color.Pink);
     }
 }
