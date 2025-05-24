@@ -20,13 +20,13 @@ public class LevelManager
 
     public void Update(float deltaTime)
     {
-        currentLevelData.Update(deltaTime);
-        timer += deltaTime;
-        if (timer >= 5f)
-        {
-            Game.LoadLevel(1);
-            timer = 0;
-        }
+        // currentLevelData.Update(deltaTime);
+        // timer += deltaTime;
+        // if (timer >= 5f)
+        // {
+        //     Game.LoadLevel(1);
+        //     timer = 0;
+        // }
     }
 
     public void Draw()

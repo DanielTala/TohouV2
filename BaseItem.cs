@@ -6,7 +6,7 @@ public class BaseItem
     public float speed;
     public Vector2 direction;
     public Vector2 initialPosition;
-    public float size = 3;
+    public float size = 30;
     public Vector2 position;
     public BaseItem(float speed, Vector2 initialPosition)
     {
@@ -46,6 +46,6 @@ public class BaseItem
 
     public void Draw()
     {
-        Raylib.DrawCircleV(position, size, Color.Pink);
+        Raylib.DrawCircleLinesV(position, size, Color.Pink);
     }
 }

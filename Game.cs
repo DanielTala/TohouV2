@@ -37,6 +37,11 @@ public class Game
         {
             enemySpawner.DespawnAllEnemy();
         }
+
+        if (itemSpawner != null)
+        {
+            itemSpawner.DespawnAllItems();
+        }
         bullets.Clear();
         toRemove.Clear();
 
@@ -54,6 +59,8 @@ public class Game
         player.Initialize();
         enemySpawner = new EnemySpawner();
         enemySpawner.Initialize();
+        itemSpawner = new ItemSpawner();
+        itemSpawner.Initialize();
         SetState(GameStates.Menu);
         levelManager = new LevelManager();
     }
@@ -68,16 +75,24 @@ public class Game
             enemySpawner.DespawnAllEnemy();
             enemySpawner = null;
         }
+
+        if (itemSpawner != null)
+        {
+            itemSpawner.DespawnAllItems();
+        }
+
         bullets.Clear();
         toRemove.Clear();
 
-        if (CurrentState == GameStates.Ingame) 
+        if (CurrentState == GameStates.Ingame)
         {
             player = new Player();
             player.Initialize();
             levelManager.Initialize(0);
             enemySpawner = new EnemySpawner();
             enemySpawner.Initialize();
+            itemSpawner = new ItemSpawner();
+            itemSpawner.Initialize();
         }
     }
 
@@ -102,6 +117,7 @@ public class Game
                 player.Update(deltaTime);
                 enemySpawner.Update(deltaTime);
                 levelManager.Update(deltaTime);
+                itemSpawner.Update(deltaTime);
 
                 foreach (var i in bullets)
                 {
@@ -147,6 +163,7 @@ public class Game
                 player.Draw();
                 enemySpawner.Draw();
                 levelManager.Draw();
+                itemSpawner.Draw();
                 foreach (var i in bullets)
                 {
                     i.Draw();
