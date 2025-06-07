@@ -14,7 +14,7 @@ public class Player
 
     public void Initialize()
     {
-        HP = 5;
+        HP = 500;
     }
 
     public void Update(float deltaTime)

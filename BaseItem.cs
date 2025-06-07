@@ -5,11 +5,11 @@ public class BaseItem
 {
     protected virtual float speed { get => 10f; }
     protected Vector2 direction;
-    protected Vector2 initialPosition;
     public float size = 30;
     public Vector2 position;
+    public bool initialized = false;
 
-    public virtual void Initialize(Vector2 position)
+    public virtual void Initialize(Vector2 initialPosition)
     {
         var xDirection = Raylib.GetRandomValue(1, 100);
         var yDirection = Raylib.GetRandomValue(1, 100);

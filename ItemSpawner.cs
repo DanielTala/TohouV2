@@ -29,7 +29,7 @@ public class ItemSpawner
         if (Raylib.IsKeyReleased(KeyboardKey.U))
         {
             var item = new SpeedItem();
-            item.Initialize(new Vector2(100, 100));
+            item.Initialize(new Vector2(500, 500));
             ItemList.Add(item);
         }
         foreach (var item in ItemList)
