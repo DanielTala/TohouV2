@@ -19,6 +19,7 @@ public class ItemSpawner
 
     }
 
+
     public void DespawnItem(BaseItem b)
     {
         ToRemove.Add(b);
@@ -27,8 +28,8 @@ public class ItemSpawner
     {
         if (Raylib.IsKeyReleased(KeyboardKey.U))
         {
-            var item = new SpeedItem(150, new Vector2(100, 100));
-            item.Initialize();
+            var item = new SpeedItem();
+            item.Initialize(new Vector2(100, 100));
             ItemList.Add(item);
         }
         foreach (var item in ItemList)

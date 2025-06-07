@@ -10,7 +10,7 @@ public class BaseEnemy
     private float PosTimer = 0, BulletTimer;
     private float shootDelay = 1f;
 
-    public int HP = 10;
+    public int HP = 1;
 
     public BaseEnemy(Vector2 initialPos, Vector2 finalPos, int level, Vector2 textureSize)
     {

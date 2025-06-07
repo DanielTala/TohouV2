@@ -11,6 +11,7 @@ public class Game
     private static EnemySpawner enemySpawner;
     private static LevelManager levelManager;
     public static ItemSpawner itemSpawner;
+    //public static PlayerEXPManager playerEXPManager;
     public enum GameStates
     {
         Menu,

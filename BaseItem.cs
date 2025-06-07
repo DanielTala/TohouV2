@@ -3,18 +3,13 @@ using Raylib_cs;
 
 public class BaseItem
 {
-    public float speed;
-    public Vector2 direction;
-    public Vector2 initialPosition;
+    protected virtual float speed { get => 10f; }
+    protected Vector2 direction;
+    protected Vector2 initialPosition;
     public float size = 30;
     public Vector2 position;
-    public BaseItem(float speed, Vector2 initialPosition)
-    {
-        this.speed = speed;
-        this.initialPosition = initialPosition;
-    }
 
-    public virtual void Initialize()
+    public virtual void Initialize(Vector2 position)
     {
         var xDirection = Raylib.GetRandomValue(1, 100);
         var yDirection = Raylib.GetRandomValue(1, 100);
