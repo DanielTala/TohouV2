@@ -19,6 +19,13 @@ public class ItemSpawner
 
     }
 
+    public static void OnEnemyDeath(BaseEnemy enemy)
+    {
+        var exp = new EXPItem();
+        exp.enemyData = enemy;
+        exp.Initialize(enemy.CurrentPosition);
+        ItemList.Add(exp);
+    }
 
     public void DespawnItem(BaseItem b)
     {

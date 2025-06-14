@@ -3,8 +3,10 @@ using Raylib_cs;
 
 public class BaseEnemy
 {
-    private Vector2 InitialPosition, FinalPosition, CurrentPosition, TextureSize;
-    private int Level;
+    public Vector2 CurrentPosition;
+    private Vector2 InitialPosition, FinalPosition, TextureSize;
+    public int Level = 1;
+    public int DifficultyMultiplier = 1;
     private float Speed = 30f, TimeToReachFinalPos = 2f;
     private bool reachedFinalPosition;
     private float PosTimer = 0, BulletTimer;

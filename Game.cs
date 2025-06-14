@@ -11,7 +11,8 @@ public class Game
     private static EnemySpawner enemySpawner;
     private static LevelManager levelManager;
     public static ItemSpawner itemSpawner;
-    //public static PlayerEXPManager playerEXPManager;
+    public static PlayerEXPManager playerEXPManager;
+    
     public enum GameStates
     {
         Menu,
@@ -72,6 +73,8 @@ public class Game
         enemySpawner.Initialize();
         itemSpawner = new ItemSpawner();
         itemSpawner.Initialize();
+        playerEXPManager = new PlayerEXPManager();
+        playerEXPManager.Initialize();
         SetState(GameStates.Menu);
         levelManager = new LevelManager();
     }
@@ -109,7 +112,6 @@ public class Game
 
     public void Update(float deltaTime)
     {
-
         switch (CurrentState)
         {
             case GameStates.Menu:
@@ -174,6 +176,7 @@ public class Game
                 enemySpawner.Draw();
                 levelManager.Draw();
                 itemSpawner.Draw();
+                playerEXPManager.Draw();
                 foreach (var i in bullets)
                 {
                     i.Draw();

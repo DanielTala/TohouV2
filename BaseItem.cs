@@ -5,7 +5,7 @@ public class BaseItem
 {
     protected virtual float speed { get => 10f; }
     protected Vector2 direction;
-    public float size = 30;
+    public virtual float size { get => 30; }
     public Vector2 position;
     public bool initialized = false;
 
